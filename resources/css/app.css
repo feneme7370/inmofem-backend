@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+.t_table {
+    @apply w-full my-2;
+}
+.t_table thead{
+    /* @apply; */
+}
+.t_table thead {
+    /* @apply p-4; */
+}
+.t_table thead tr{
+    @apply tracking-wide text-left text-gray-100 border-b dark:border-gray-700 bg-purple-900 dark:text-gray-400 dark:bg-gray-800;
+}
+.t_table thead tr th{
+    @apply text-sm py-3 px-1 text-center truncate;
+}
+.t_table tbody {
+    @apply bg-gray-50 divide-y divide-dotted divide-opacity-40 divide-purple-900 dark:divide-purple-900 dark:bg-gray-800;
+}
+.t_table tbody tr{
+    /* @apply ; */
+}
+.t_table tbody tr td{
+    @apply text-gray-700 dark:text-gray-400 py-3 px-1 text-sm text-center;
+}
+.t_table tbody tr td p{
+    @apply line-clamp-2;
+}
+
+
+.t_table tbody tr td.with-id-columns{
+    @apply w-5 text-center;
+}
+.t_table tbody tr td.with-actions-columns{
+    @apply w-5;
+}
+.t_table tbody tr td .actions{
+    @apply flex justify-center items-center gap-1 text-xs;
+}
+.t_table tbody tr td.with-status-columns{
+    @apply w-6 px-3 text-center;
+}
+
+
+.t_table tbody tr td.with-conditions-columns{
+    @apply my-1 p-1 space-y-1 text-center text-sm;
+}
+.t_table tbody tr td.with-conditions-columns span{
+    @apply cursor-pointer;
+}
+.t_table tbody tr td.with-image-columns{
+    @apply h-8 w-8 sm:h-16 sm:w-16;
+}
+.t_table tbody tr td.with-image-columns img{
+    @apply block mx-auto h-8 w-8 sm:h-16 sm:w-16 object-cover rounded-lg;
+}
