@@ -1,13 +1,13 @@
 <x-guest-layout>
-    <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+    <div class="flex items-center min-h-screen p-6 bg-gray-50 ">
         <div
-          class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+          class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl "
         >
           <div class="flex flex-col overflow-y-auto md:flex-row">
             <div class="h-32 md:h-auto md:w-1/2">
               <img
                 aria-hidden="true"
-                class="object-cover w-full h-full dark:hidden"
+                class="object-cover w-full h-full"
                 src="{{asset('sistem/img/image-login.jpg')}}"
                 alt="imagen login"
               />
@@ -19,7 +19,7 @@
                     @csrf
 
                     <h1
-                      class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
+                      class="mb-4 text-xl font-semibold text-gray-700 "
                     >
                       Iniciar Sesion
                     </h1>
@@ -43,7 +43,7 @@
   
                 {{-- btn github --}}
                 {{-- <button
-                  class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
+                  class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg  active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
                     >
                   <svg
                     class="w-4 h-4 mr-2"
@@ -60,7 +60,7 @@
 
                 {{-- btn twitter --}}
                 {{-- <button
-                  class="flex items-center justify-center w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
+                  class="flex items-center justify-center w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg  active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray"
                     >
                   <svg
                     class="w-4 h-4 mr-2"
@@ -77,7 +77,7 @@
   
                 <p class="mt-4">
                   <a
-                    class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
+                    class="text-sm font-medium text-primary-600  hover:underline"
                     href="{{route('password.request')}}"
                   >
                     Olvidaste tu clave?
@@ -85,7 +85,7 @@
                 </p>
                 {{-- <p class="mt-1">
                   <a
-                    class="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
+                    class="text-sm font-medium text-primary-600  hover:underline"
                     href="{{route('register')}}"
                   >
                     Crear cuenta
