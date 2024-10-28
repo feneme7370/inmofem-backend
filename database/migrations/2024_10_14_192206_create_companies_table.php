@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('image_logo_path', 2048)->nullable();
             $table->string('image_qr_path', 2048)->nullable();
 
+            $table->string('uuid', 255)->unique();
+
             $table->tinyInteger('status')->default(1); // 1 activo - 0 inactivo
             $table->foreignId('membership_id')->nullable()->constrained()->onUpdate('cascade')->restrictOnDelete();
             $table->datetime('deleted_at')->nullable()->default(null);

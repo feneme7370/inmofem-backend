@@ -91,9 +91,9 @@
 
                     <td class="with-actions-columns">
                         <div class="actions">
-                            <x-pages.buttons.view-link href="{{ route('properties.show', ['propertyId' => $item->id]) }}" />
-                            <x-pages.buttons.edit-link href="{{ route('properties.create', ['propertyId' => $item->id]) }}" />
-                            <x-pages.buttons.delete-text wire:click="deleteModal({{ $item->id }})" />
+                            <x-pages.buttons.view-link href="{{ route('properties.show', ['propertyId' => $item->uuid]) }}" />
+                            <x-pages.buttons.edit-link href="{{ route('properties.create', ['propertyId' => $item->uuid]) }}" />
+                            <x-pages.buttons.delete-text wire:click="deleteModal( '{{ $item->uuid }}' )" />
                         </div>
                     </td>
     

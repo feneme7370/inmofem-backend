@@ -38,6 +38,10 @@ class CompanyPolicy
     {
         return $user->id == 1;
     }
+    public function updateUser(User $user, Company $company): bool
+    {
+        return $user->company_id == $company->id;
+    }
 
     /**
      * Determine whether the user can delete the model.

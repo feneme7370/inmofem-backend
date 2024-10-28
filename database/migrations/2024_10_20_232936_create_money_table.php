@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('money', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100); // Ej. apartamento, casa, local comercial
-            $table->string('slug', 150)->unique();
+            $table->string('slug', 255)->unique();
+            $table->string('uuid', 255)->unique();
             $table->string('signo', 20); 
             $table->longText('description')->nullable();
             $table->tinyInteger('status')->default(1);

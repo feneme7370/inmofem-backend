@@ -24,6 +24,8 @@ class Membership extends Model
         'max_property_services',
         'max_tags',
         'max_suggestions',
+
+        'uuid',
       
         'status',
         'deleted_at',

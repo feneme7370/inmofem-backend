@@ -16,7 +16,8 @@ return new class extends Migration
 
             // Información básica de la propiedad
             $table->string('title', 255);
-            $table->string('slug')->unique();
+            $table->string('slug', 255)->unique();
+            $table->string('uuid', 255)->unique();
             $table->longText('description')->nullable();
             $table->decimal('price', 20, 2); // Para valores monetarios
 

@@ -10,7 +10,7 @@ class AllPicture extends Model
 
     use HasFactory;
 
-    protected $fillable = ['path_jpg', 'path_jpg_tumb', 'imageable_id', 'imageable_type', 'type'];
+    protected $fillable = ['path_jpg', 'path_jpg_tumb', 'imageable_id', 'imageable_type', 'type','uuid'];
 
     public function imageable()
     {

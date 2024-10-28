@@ -18,6 +18,7 @@ class Feature extends Model
         'description',
         'category',
         'status',
+        'uuid',
         
         'user_id',
         'company_id',

@@ -34,6 +34,7 @@ class CompanyCreate extends Component
     $time_description,
     $short_description,
     $membership_id,
+    $uuid,
     $status;
 
     public $image_cover, $image_logo, $image_qr; // imagenes nuevas
@@ -54,6 +55,7 @@ class CompanyCreate extends Component
         'time_description',
         'short_description',
         'membership_id',
+        'uuid',
         'status'
     ];
 
@@ -75,6 +77,7 @@ class CompanyCreate extends Component
         'short_description' => ['nullable', 'string', 'max:500'],
         'membership_id' => ['required', 'exists:memberships,id'],
         'status' => ['required', 'numeric'],
+        'uuid' => ['nullable', 'string'],
 
         'image_cover' => ['nullable','image','mimes:jpeg,png,jpg,gif','max:3072'],
         'image_logo' => ['nullable','image','mimes:jpeg,png,jpg,gif','max:3072'],
@@ -97,6 +100,7 @@ class CompanyCreate extends Component
         'short_description' => 'descripción corta',
         'membership_id' => 'membresía',
         'status' => 'estado',
+        'uuid' => 'clave unica',
 
         'image_cover' => 'imagen de portada',
         'image_logo' => 'imagen de logo',
@@ -129,6 +133,7 @@ class CompanyCreate extends Component
             $this->time_description = $this->company->time_description;
             $this->short_description = $this->company->short_description;
             $this->membership_id = $this->company->membership_id;
+            $this->uuid = $this->company->uuid;
             $this->status = $this->company->status  ? true : false;
 
         // si estamos creando
@@ -181,6 +186,7 @@ class CompanyCreate extends Component
             $dataImage = CrudInterventionImage::uploadImage($image, $type); // guardar nuevas imagenes y actualizar registros
     
             $this->company->allPictures()->create([
+                'uuid' => Str::uuid(),
                 'path_jpg' => $dataImage['jpg']['image_jpg'],
                 'path_jpg_tumb' => $dataImage['jpg']['tumb_jpg'],
                 'type' => $dataImage['jpg']['type'],
@@ -206,9 +212,9 @@ class CompanyCreate extends Component
     public function save() {
 
         // poner datos automaticos
-        $this->slug = Str::slug($this->name);
+        $this->slug = Str::slug($this->uuid .'-'.$this->name);
         $this->status = $this->status ? 1 : 0;
-
+        
         // validar datos
         $this->validate();
 
@@ -223,6 +229,7 @@ class CompanyCreate extends Component
         // si creamos
         } else {
             // crear empresa y obtener datos
+            $this->uuid = Str::uuid();
             $this->company = Company::create(
                 $this->only($this->tableColumns)
             );

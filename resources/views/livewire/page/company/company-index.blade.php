@@ -92,7 +92,7 @@
                     <div class="actions">
                         <x-pages.buttons.view-link href="{{ route('companies.show', ['companyId' => $item->id]) }}" />
                         <x-pages.buttons.edit-link href="{{ route('companies.create', ['companyId' => $item->id]) }}" />
-                        <x-pages.buttons.delete-text wire:click="deleteModal({{ $item->id }})" />
+                        <x-pages.buttons.delete-text wire:click="deleteModal('{{ $item->id }}')" />
                     </div>
                     </td>
     

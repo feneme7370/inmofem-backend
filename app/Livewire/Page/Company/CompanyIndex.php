@@ -7,6 +7,7 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use App\Models\Page\Company;
 use Livewire\WithPagination;
+use App\Helpers\CrudInterventionImage;
 
 class CompanyIndex extends Component
 {
@@ -38,12 +39,17 @@ class CompanyIndex extends Component
      // mostrar modal para confirmar crear
      public function deleteModal($id) {
         $this->company = Company::find($id);
-
         $this->authorize('delete', $this->company); 
         $this->deleteActionModal = true;
     }
 
     public function delete(){
+        
+        if($this->company->allPictures()->count()){
+            foreach($this->company->allPictures()->get() as $to_delete){
+                CrudInterventionImage::deletePictureAndTumb($to_delete->path_jpg, $to_delete->path_jpg_tumb);
+            }
+        }
         $this->company->update(
                 [
                     'deleted_at' => Carbon::now(),

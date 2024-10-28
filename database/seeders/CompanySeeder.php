@@ -27,6 +27,7 @@ class CompanySeeder extends Seeder
             'hero_description' => 'Todos las propiedades',
             'time_description' => 'Lunes a viernes',
             'description' => 'Accede con el codigo QR y podras ver tu menu con todos tus productos y categorias. ',
+            'uuid' => Str::uuid(),
             'status' => '1',
             'membership_id' => '1',
         ]);
@@ -43,8 +44,9 @@ class CompanySeeder extends Seeder
             'hero_description' => 'Todos las propiedades',
             'time_description' => 'Lunes a viernes',
             'description' => 'Accede con el codigo QR y podras ver tu menu con todos tus productos y categorias. ',
+            'uuid' => Str::uuid(),
             'status' => '1',
-            'membership_id' => '1',
+            'membership_id' => '2',
         ]);
     }
 }

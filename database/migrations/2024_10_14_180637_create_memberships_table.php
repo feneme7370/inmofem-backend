@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('slug', 255)->unique();
+            $table->string('uuid', 255)->unique();
             $table->decimal('price', 20, 2);
             $table->text('description', 500)->nullable();
             $table->text('short_description', 500)->nullable();

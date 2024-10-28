@@ -15,6 +15,7 @@ class Money extends Model
         'signo',
         'description',
         'status',
+        'uuid',
         
         'user_id',
         'company_id',

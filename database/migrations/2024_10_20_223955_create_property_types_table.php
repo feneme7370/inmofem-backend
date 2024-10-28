@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('property_types', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100); // Ej. apartamento, casa, local comercial
-            $table->string('slug', 150)->unique();
+            $table->string('slug', 255)->unique();
+            $table->string('uuid', 255)->unique();
             $table->longText('description')->nullable();
             $table->tinyInteger('status')->default(1);
 

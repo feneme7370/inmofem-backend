@@ -3,10 +3,13 @@
 use App\Livewire\Page\Company\CompanyCreate;
 use App\Livewire\Page\Company\CompanyIndex;
 use App\Livewire\Page\Company\CompanyShow;
+use App\Livewire\Page\Company\ConfigIndex;
 use App\Livewire\Page\Dashboard\DashboardIndex;
 use App\Livewire\Page\Property\PropertyCreate;
 use App\Livewire\Page\Property\PropertyIndex;
 use App\Livewire\Page\Property\PropertyShow;
+use App\Livewire\Page\Role\RoleIndex;
+use App\Livewire\Page\Role\RolePermission;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,6 +33,9 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', DashboardIndex::class)->middleware('can:dashboard.index')->name('dashboard.index');
     
+    Route::get('/roles', RoleIndex::class)->middleware('can:roles.index')->name('roles.index');
+    Route::get('/permissions', RolePermission::class)->middleware('can:roles.permission')->name('roles.permission');
+    Route::get('/config', ConfigIndex::class)->middleware('can:config.index')->name('config.index');
     Route::get('/company', CompanyIndex::class)->middleware('can:companies.index')->name('companies.index');
     Route::get('/company/create/{companyId?}', CompanyCreate::class)->middleware('can:companies.create')->name('companies.create');
     Route::get('/company/{companyId}/show', CompanyShow::class)->middleware('can:companies.show')->name('companies.show');

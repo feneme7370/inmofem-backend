@@ -33,6 +33,7 @@ class Company extends Model
         'image_logo_path',
         'image_qr_path',
 
+        'uuid',
         'membership_id',
         'status',
         'deleted_at',

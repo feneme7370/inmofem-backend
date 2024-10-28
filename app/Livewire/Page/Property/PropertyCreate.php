@@ -48,7 +48,8 @@ class PropertyCreate extends Component
     $company_id,
     $user_id,
 
-    $status;
+    $status,
+    $uuid;
 
     public $property_features = [];
     public $image_cover, $image_additional; // imagenes nuevas
@@ -78,6 +79,7 @@ class PropertyCreate extends Component
         'user_id',
     
         'status',
+        'uuid',
     ];
 
     /********************************************* MODULO RULES *********************************************/
@@ -105,6 +107,7 @@ class PropertyCreate extends Component
         'company_id' => ['required', 'exists:companies,id'],
         'user_id' => ['required', 'exists:users,id'],
         'status' => ['required', 'numeric'],
+        'uuid' => ['nullable', 'string'],
     ];}
 
     // Reglas de validación en forma de array
@@ -130,6 +133,7 @@ class PropertyCreate extends Component
         'company_id' => 'empresa',
         'user_id' => 'usuario',
         'status' => 'estado',
+        'uuid' => 'clave unica',
     ];
 
     /********************************************* MODULO INICIO *********************************************/
@@ -140,7 +144,7 @@ class PropertyCreate extends Component
         // si estamos editando
         if ($propertyId) {
             
-            $this->property = Property::findOrFail($propertyId);
+            $this->property = Property::where('uuid', $propertyId)->first();
 
             $this->authorize('update', $this->property); 
 
@@ -167,6 +171,7 @@ class PropertyCreate extends Component
             $this->user_id = $this->property->user_id;
 
             $this->status = $this->property->status ? true : false;
+            $this->uuid = $this->property->uuid;
 
             $this->property_features = $this->property->features->pluck('id')->toArray();
         // si estamos creando
@@ -266,6 +271,7 @@ class PropertyCreate extends Component
             $dataImage = CrudInterventionImage::uploadImage($image, $type); // guardar nuevas imagenes y actualizar registros
     
             $this->property->allPictures()->create([
+                'uuid' => Str::uuid(),
                 'path_jpg' => $dataImage['jpg']['image_jpg'],
                 'path_jpg_tumb' => $dataImage['jpg']['tumb_jpg'],
                 'type' => $dataImage['jpg']['type'],
@@ -283,6 +289,7 @@ class PropertyCreate extends Component
                 $dataImage = CrudInterventionImage::uploadImage($item, 'image_additional'); // guardar nuevas imagenes y actualizar registros
         
                 $this->property->allPictures()->create([
+                    'uuid' => Str::uuid(),
                     'path_jpg' => $dataImage['jpg']['image_jpg'],
                     'path_jpg_tumb' => $dataImage['jpg']['tumb_jpg'],
                     'type' => $dataImage['jpg']['type'],
@@ -295,13 +302,16 @@ class PropertyCreate extends Component
     // boton de guardar o editar
     public function save() {
 
-        
+        // Asegúrate de que el usuario tiene permisos para crear o actualizar la propiedad
+        if (!Auth::user()) {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
         
         if($this->membershipCountBetween(
            $this->image_additional, 
             $this->property,
             'image_additional',
-            'max_images',
+            'max_images'
         )){return;}
 
         // poner datos automaticos
@@ -318,6 +328,7 @@ class PropertyCreate extends Component
 
         // si editamos
         if( isset( $this->property['id'])) {
+            $this->authorize('update', $this->property);
             if($this->membershipCount('\App\Models\Page\Property', 'max_properties', '>')){return;}
             // actualizar datos
             $this->property->update(
@@ -326,7 +337,9 @@ class PropertyCreate extends Component
 
         // si creamos
         } else {
+            $this->authorize('create', Property::class);
             if($this->membershipCount('\App\Models\Page\Property', 'max_properties', '>=')){return;}
+            $this->uuid = Str::uuid();
             // crear empresa y obtener datos
             $this->property = Property::create(
                 $this->only($this->tableColumns)

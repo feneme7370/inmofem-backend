@@ -12,7 +12,7 @@ class PropertyPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return isset($user->company_id); // Permitir si el usuario pertenece a una compañía
     }
 
     /**
@@ -28,7 +28,7 @@ class PropertyPolicy
      */
     public function create(User $user): bool
     {
-        return $user->company_id;
+        return isset($user->company_id); // Permitir si el usuario pertenece a una compañía
     }
 
     /**

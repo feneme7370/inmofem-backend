@@ -17,6 +17,7 @@ class Method extends Model
         'slug',
         'description',
         'status',
+        'uuid',
         
         'user_id',
         'company_id',

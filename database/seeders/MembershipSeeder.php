@@ -26,6 +26,7 @@ class MembershipSeeder extends Seeder
             'max_features' => 1,
             'max_tags' => 2,
             'max_suggestions' => 2,
+            'uuid' => Str::uuid(),
             'status' => '1',
         ]);
         Membership::create([
@@ -40,6 +41,7 @@ class MembershipSeeder extends Seeder
             'max_features' => 100,
             'max_tags' => 100,
             'max_suggestions' => 100,
+            'uuid' => Str::uuid(),
             'status' => '1',
         ]);
         Membership::create([
@@ -54,6 +56,7 @@ class MembershipSeeder extends Seeder
             'max_features' => 100,
             'max_tags' => 100,
             'max_suggestions' => 100,
+            'uuid' => Str::uuid(),
             'status' => '1',
         ]);
     }

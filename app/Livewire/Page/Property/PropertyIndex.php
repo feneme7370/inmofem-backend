@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use App\Models\Page\Property;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\CrudInterventionImage;
 
 class PropertyIndex extends Component
 {
@@ -39,14 +40,18 @@ class PropertyIndex extends Component
 
      // mostrar modal para confirmar crear
      public function deleteModal($id) {
-        $this->property = Property::find($id);
-
+        $this->property = Property::where('uuid', $id)->first();
         $this->authorize('delete', $this->property); 
         
         $this->deleteActionModal = true;
     }
 
     public function delete(){
+        if($this->property->allPictures()->count()){
+            foreach($this->property->allPictures()->get() as $to_delete){
+                CrudInterventionImage::deletePictureAndTumb($to_delete->path_jpg, $to_delete->path_jpg_tumb);
+            }
+        }
         $this->property->update(
                 [
                     'deleted_at' => Carbon::now(),
@@ -62,7 +67,7 @@ class PropertyIndex extends Component
     public function render()
     {
         $properties = Property::
-            select('id', 'title', 'price', 'status', 'money_id')
+            select('id', 'title', 'uuid', 'price', 'status', 'money_id')
             ->with('money', 'method', 'property_type', 'features', 'allPictures', 'user', 'company')
             ->where('company_id', Auth::user()->company->id)
             ->when( $this->search, function($query) {

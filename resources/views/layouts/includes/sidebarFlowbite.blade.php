@@ -150,6 +150,51 @@
                 </li>
                 @endcan
 
+                @can('roles.index')
+                <li>
+                    <a 
+                        href="{{ route('roles.index') }}"    
+                        class="{{ request()->routeIs('roles.index') ? 'bg-gray-950' : '' }} 
+                        flex items-center p-2 text-gray-200 rounded-lg dark:text-white  hover:bg-gray-700 dark:hover:bg-gray-700 group"
+                    >
+
+                    <x-pages.icons.for-icons-app icon="role" class_w_h="w-6 h-6"/>
+    
+                    <span class="ms-3">Roles</span>
+                    </a>
+                </li>
+                @endcan
+
+                @can('roles.permission')
+                <li>
+                    <a 
+                        href="{{ route('roles.permission') }}"    
+                        class="{{ request()->routeIs('roles.permission') ? 'bg-gray-950' : '' }} 
+                        flex items-center p-2 text-gray-200 rounded-lg dark:text-white  hover:bg-gray-700 dark:hover:bg-gray-700 group"
+                    >
+
+                    <x-pages.icons.for-icons-app icon="permission" class_w_h="w-6 h-6"/>
+    
+                    <span class="ms-3">Permisos</span>
+                    </a>
+                </li>
+                @endcan
+
+                @can('config.index')
+                <li>
+                    <a 
+                        href="{{ route('config.index') }}"    
+                        class="{{ request()->routeIs('config.index') ? 'bg-gray-950' : '' }} 
+                        flex items-center p-2 text-gray-200 rounded-lg dark:text-white  hover:bg-gray-700 dark:hover:bg-gray-700 group"
+                    >
+
+                    <x-pages.icons.for-icons-app icon="config" class_w_h="w-6 h-6"/>
+    
+                    <span class="ms-3">Configuracion</span>
+                    </a>
+                </li>
+                @endcan
+
                 @can('properties.index')
                 <li>
                     <a 

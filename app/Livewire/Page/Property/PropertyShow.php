@@ -30,6 +30,7 @@ class PropertyShow extends Component
     $company_id,
     $user_id,
 
+    $uuid,
     $status;
 
     public $property;
@@ -39,7 +40,7 @@ class PropertyShow extends Component
     public function mount()
     {
         if ($this->propertyId) {
-            $this->property = Property::findOrFail($this->propertyId);
+            $this->property = Property::where('uuid', $this->propertyId)->first();
             $this->authorize('view', $this->property); 
         }
     }

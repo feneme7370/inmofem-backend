@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -28,6 +29,7 @@ class SpatieSeeder extends Seeder
             'address' => 'Arenales 356',
             'city' => 'Carlos Casares',
             'description' => 'Usuario Maestro',
+            'uuid' => Str::uuid(),
             'status' => '1',
             'company_id' => '1',
         ]);
@@ -42,6 +44,7 @@ class SpatieSeeder extends Seeder
             'address' => 'Zanni 1508',
             'city' => 'Pehuajo',
             'description' => 'Usuario de prueba',
+            'uuid' => Str::uuid(),
             'status' => '1',
             'company_id' => '2',
         ]);
@@ -56,6 +59,7 @@ class SpatieSeeder extends Seeder
             'address' => 'Zanni 1508',
             'city' => 'Pehuajo',
             'description' => 'Usuario de prueba',
+            'uuid' => Str::uuid(),
             'status' => '1',
             'company_id' => '2',
         ]);
@@ -70,14 +74,18 @@ class SpatieSeeder extends Seeder
         
         Permission::create(['name' => 'dashboard.index'])->syncRoles([$adminRole, $employeeRole, $unregisterRole]);
         
-        Permission::create(['name' => 'companies.index'])->syncRoles([$adminRole]);
-        Permission::create(['name' => 'companies.create'])->syncRoles([$adminRole]);
-        Permission::create(['name' => 'companies.show'])->syncRoles([$adminRole]);
-        
         Permission::create(['name' => 'properties.index'])->syncRoles([$adminRole, $employeeRole]);
         Permission::create(['name' => 'properties.create'])->syncRoles([$adminRole, $employeeRole]);
         Permission::create(['name' => 'properties.show'])->syncRoles([$adminRole, $employeeRole]);
 
+        Permission::create(['name' => 'config.index'])->syncRoles([$adminRole, $employeeRole]);
+        
+        Permission::create(['name' => 'companies.index'])->syncRoles([$adminRole]);
+        Permission::create(['name' => 'companies.create'])->syncRoles([$adminRole]);
+        Permission::create(['name' => 'companies.show'])->syncRoles([$adminRole]);
+        
         Permission::create(['name' => 'memberships.index'])->syncRoles([$adminRole]);
+        Permission::create(['name' => 'roles.index'])->syncRoles([$adminRole]);
+        Permission::create(['name' => 'roles.permission'])->syncRoles([$adminRole]);
     }
 }

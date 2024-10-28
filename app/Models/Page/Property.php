@@ -34,6 +34,7 @@ class Property extends Model
         'company_id',
         'user_id',
 
+        'uuid',
         'status',
         'deleted_at',
 

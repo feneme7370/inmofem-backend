@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('all_pictures', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid', 255)->unique();
             $table->string('path_jpg');
             $table->string('path_jpg_tumb');
             $table->string('imageable_type');

@@ -10,6 +10,7 @@ text-red-700
 hover:text-red-500 
 
 active:text-red-500
+cursor-pointer
 ']) }}
     wire:loading.class="opacity-50"
     wire:loading.attr="disabled">
