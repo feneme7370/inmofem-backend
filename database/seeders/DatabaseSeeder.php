@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             MoneySeeder::class,
 
             PropertySeeder::class,
+            AllPictureSeeder::class
         ]);
     }
 

@@ -35,18 +35,20 @@ return new class extends Migration
             $table->tinyInteger('garage')->default(1);
             $table->tinyInteger('yard')->default(1);
             $table->decimal('size', 8, 2)->nullable(); // Tamaño de la propiedad (por ejemplo, en metros cuadrados)
-
+            
             // Foreign keys
             $table->foreignId('money_id')->constrained()->onDelete('restrict'); // Tipo de propiedad
             $table->foreignId('method_id')->constrained()->onDelete('restrict'); // Tipo de propiedad
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('restrict'); // Tipo de propiedad
             $table->foreignId('company_id')->nullable()->constrained()->onDelete('set null'); // Empresa que gestiona la propiedad
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null'); // Usuario que creó la propiedad
-
+            
             // Otras opciones
+            $table->tinyInteger('is_send')->default(0); // 1 vendida, 0 publicada
             $table->tinyInteger('status')->default(1);
 
             // Timestamps y soft deletes
+            $table->datetime('send_at')->nullable()->default(null);
             $table->datetime('deleted_at')->nullable()->default(null);
             $table->timestamps();
 

@@ -24,7 +24,7 @@
             <div class="flex items-center justify-start rtl:justify-end">
                 <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
                     type="button"
-                    class="inline-flex items-center p-2 text-sm bg-primary-300 text-primary-700 rounded-lg sm:hidden hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-200 ">
+                    class="inline-flex items-center p-2 text-sm bg-amber-700 text-amber-200 rounded-lg sm:hidden hover:bg-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-200 ">
                     <span class="sr-only">Open sidebar</span>
                     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
@@ -79,10 +79,9 @@
                             @endforeach
 
                             <li>
-                                <form method="POST" action="{{ route('logout') }}"
+                                <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button class=" flex items-center gap-3 px-4 py-2 text-sm text-gray-700
-                                    hover:bg-primary-100 w-full" >
+                                    <button class="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-primary-100 w-full">
                                     Cerrar sesion
                                     </button>
 

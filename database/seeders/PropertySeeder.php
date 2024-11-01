@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Page\FeatureProperty;
 use Illuminate\Support\Str;
 use App\Models\Page\Property;
 use Illuminate\Database\Seeder;
@@ -29,6 +30,7 @@ class PropertySeeder extends Seeder
             'size' => 45.5,
             'uuid' => Str::uuid(),
             'status' => 1,
+            'is_send' => 0,
 
             'money_id' => 1,
             'method_id' => 1,
@@ -51,6 +53,7 @@ class PropertySeeder extends Seeder
             'size' => 45.5,
             'uuid' => Str::uuid(),
             'status' => 1,
+            'is_send' => 0,
 
             'money_id' => 2,
             'method_id' => 2,
@@ -73,6 +76,7 @@ class PropertySeeder extends Seeder
             'size' => 45.5,
             'uuid' => Str::uuid(),
             'status' => 1,
+            'is_send' => 0,
 
             'money_id' => 2,
             'method_id' => 2,
@@ -95,6 +99,30 @@ class PropertySeeder extends Seeder
             'size' => 45.5,
             'uuid' => Str::uuid(),
             'status' => 1,
+            'is_send' => 0,
+
+            'money_id' => 2,
+            'method_id' => 2,
+            'property_type_id' => 2,
+            'user_id' => 2,
+            'company_id' => 2,
+        ]);
+        Property::create([
+            'title' => 'Local Centrico Comercial',
+            'slug' => Str::slug('Local Centrico Comercial'),
+            'description' => 'Descripcion sobre el tipo de caracteristica',
+            'price' => 300000.00,
+            'address' => 'Arenales 356',
+            'city' => 'Carlos Casares',
+            'country' => 'Argentina',
+            'bedrooms' => 1,
+            'bathrooms' => 2,
+            'garage' => 1,
+            'yard' => 1,
+            'size' => 45.5,
+            'uuid' => Str::uuid(),
+            'status' => 1,
+            'is_send' => 0,
 
             'money_id' => 2,
             'method_id' => 2,
@@ -117,6 +145,30 @@ class PropertySeeder extends Seeder
             'size' => 45.5,
             'uuid' => Str::uuid(),
             'status' => 1,
+            'is_send' => 0,
+
+            'money_id' => 1,
+            'method_id' => 1,
+            'property_type_id' => 2,
+            'user_id' => 2,
+            'company_id' => 2,
+        ]);
+        Property::create([
+            'title' => 'Casa de dos pisos - rebajada',
+            'slug' => Str::slug('Casa de dos pisos - rebajada'),
+            'description' => 'Descripcion sobre el tipo de caracteristica',
+            'price' => 49000.00,
+            'address' => 'Arenales 356',
+            'city' => 'Carlos Casares',
+            'country' => 'Argentina',
+            'bedrooms' => 1,
+            'bathrooms' => 2,
+            'garage' => 1,
+            'yard' => 1,
+            'size' => 45.5,
+            'uuid' => Str::uuid(),
+            'status' => 1,
+            'is_send' => 0,
 
             'money_id' => 1,
             'method_id' => 1,
@@ -139,6 +191,7 @@ class PropertySeeder extends Seeder
             'size' => 45.5,
             'uuid' => Str::uuid(),
             'status' => 1,
+            'is_send' => 0,
 
             'money_id' => 1,
             'method_id' => 1,
@@ -146,5 +199,54 @@ class PropertySeeder extends Seeder
             'user_id' => 2,
             'company_id' => 2,
         ]);
+        Property::create([
+            'title' => 'Terreno 20x50',
+            'slug' => Str::slug('Terreno 20x50'),
+            'description' => 'Descripcion sobre el tipo de caracteristica',
+            'price' => 21000.00,
+            'address' => 'Arenales 356',
+            'city' => 'Carlos Casares',
+            'country' => 'Argentina',
+            'bedrooms' => 1,
+            'bathrooms' => 2,
+            'garage' => 1,
+            'yard' => 1,
+            'size' => 45.5,
+            'uuid' => Str::uuid(),
+            'status' => 1,
+            'is_send' => 0,
+
+            'money_id' => 1,
+            'method_id' => 1,
+            'property_type_id' => 2,
+            'user_id' => 2,
+            'company_id' => 2,
+        ]);
+        Property::create([
+            'title' => 'Terreno 12x50',
+            'slug' => Str::slug('Terreno 12x50'),
+            'description' => 'Descripcion sobre el tipo de caracteristica',
+            'price' => 80000000.00,
+            'address' => 'Arenales 356',
+            'city' => 'Carlos Casares',
+            'country' => 'Argentina',
+            'bedrooms' => 1,
+            'bathrooms' => 2,
+            'garage' => 1,
+            'yard' => 1,
+            'size' => 45.5,
+            'uuid' => Str::uuid(),
+            'status' => 1,
+            'is_send' => 0,
+
+            'money_id' => 1,
+            'method_id' => 2,
+            'property_type_id' => 2,
+            'user_id' => 2,
+            'company_id' => 2,
+        ]);
+
+        Property::factory()->count(150)->create();
+        FeatureProperty::factory()->count(1000)->create();
     }
 }

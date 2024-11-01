@@ -61,3 +61,23 @@
 .t_table tbody tr td.with-image-columns img{
     @apply block mx-auto h-8 w-8 sm:h-16 sm:w-16 object-cover rounded-lg;
 }
+
+
+.t_badge-green {
+    @apply bg-green-300 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded;
+}
+.t_badge-blue {
+    @apply bg-blue-300 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded;
+}
+.t_badge-gray {
+    @apply bg-gray-300 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded;
+}
+.t_badge-red {
+    @apply bg-red-300 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded;
+}
+.t_tr-inactive {
+    @apply bg-red-100 text-red-900;
+}
+.t_tr-active {
+    @apply bg-green-100 text-green-900;
+}

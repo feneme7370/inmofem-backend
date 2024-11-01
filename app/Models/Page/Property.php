@@ -35,6 +35,8 @@ class Property extends Model
         'user_id',
 
         'uuid',
+        'is_send',
+        'send_at',
         'status',
         'deleted_at',
 

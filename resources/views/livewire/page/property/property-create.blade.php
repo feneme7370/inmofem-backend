@@ -50,9 +50,6 @@
       <li role="presentation">
           <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="features-styled-tab" data-tabs-target="#styled-features" type="button" role="tab" aria-controls="features" aria-selected="false">Caracteristicas</button>
       </li>
-      <li role="presentation">
-          <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="images-styled-tab" data-tabs-target="#styled-images" type="button" role="tab" aria-controls="images" aria-selected="false">Imagenes</button>
-      </li>
   </ul>
 </div>
 <div id="default-styled-tab-content">
@@ -280,85 +277,87 @@
     
           </x-pages.forms.jetstream.form-section>
   </div>
-  <div class="hidden p-4 rounded-lg bg-purple-50 dark:bg-gray-800" id="styled-images" role="tabpanel" aria-labelledby="images-tab">
-          {{-- form images --}}
-          <x-pages.forms.jetstream.form-section submit="save">
-            <x-slot name="title">
-              {{ __('Imagenes') }}
-            </x-slot>
-    
-            <x-slot name="description">
-              {{ __('Agregue imagenes.') }}
-            </x-slot>
-    
-            <x-slot name="form">
-              <div class="grid gap-2 w-full">
-                  <div>
-                      {{-- imagen del producto --}}
-                      <x-pages.cards.upload-image 
-                        new_image_file="{{$this->image_cover}}"
-                        new_image_file_string="image_cover"
-                        rotate="rotateImage"
-                        delete="deleteImage"
-                        imageable_id="{{ $imageCover->imageable_id ?? ''}}"
-                        type="'image_cover'"
-                        image_file_name="{{ $imageCover->path_jpg ?? '' }}"
-                        title="Portada"
-                        title_2="Imagen de portada"
-                      />
-                  </div>
-                  <div>
-                      {{-- imagenes de la propiedad --}}
-                      <div>
-                        <x-pages.forms.label-form for="image_additional" value="Imagenes adicionales" />
-                        <x-pages.forms.input-file-form multiple id="image_additional" description="JPG, JPEG, PNG o GIF (Max. 5 mb)" wire:model.live="image_additional" accept="image/*"
-                            />
-                        <x-pages.forms.input-error for="image_additional" />
-                    </div>
-
-                    @if ($imageAdditional)
-                        
-                    <div class="grid grid-cols-5 gap-1">
-                        @foreach ($imageAdditional as $item)
-                        <div class="flex flex-col justify-center items-center gap-1">
-                            <x-pages.libraries.lightbox.img-lightbox 
-                                class="mx-auto rounded-xl"
-                                class_w_h="h-16 w-16"
-                                name="{{ $item->path_jpg }}"   
-                            />
-                            <x-pages.buttons.primary-btn 
-                            title="Borrar" 
-                            wire:click="{{ 'deleteImageAdditional(' . $item->id . ', ' . $item->type . ')' }}" 
-                            >
-                            
-                            @slot('icon')
-                                {{-- <x-sistem.icons.for-icons-app icon="trash" class_w_h="h-4 w-4"/> --}}
-                            @endslot
-                  
-                          </x-pages.buttons.primary-btn>
-                        </div>
-                        @endforeach
-                    </div>
-                    @endif
-                  </div>
-
-
-                  <x-pages.spinners.loading-spinner wire:loading.delay />
-
-                  
-              </div>
-
-              <x-pages.forms.validation-errors class="mb-4" />
-            </x-slot>
-    
-            <x-slot name="actions">
-
-            </x-slot>
-    
-          </x-pages.forms.jetstream.form-section>
-  </div>
-
+  
 </div>
+
+<div class="my-5 p-4 rounded-lg bg-purple-50 dark:bg-gray-800"">
+  {{-- form images --}}
+  <x-pages.forms.jetstream.form-section submit="save">
+    <x-slot name="title">
+      {{ __('Imagenes') }}
+    </x-slot>
+  
+    <x-slot name="description">
+      {{ __('Agregue imagenes.') }}
+    </x-slot>
+  
+    <x-slot name="form">
+      <div class="grid gap-2 w-full">
+          <div>
+              {{-- imagen del producto --}}
+              <x-pages.cards.upload-image 
+                new_image_file="{{$this->image_cover}}"
+                new_image_file_string="image_cover"
+                rotate="rotateImage"
+                delete="deleteImage"
+                imageable_id="{{ $imageCover->imageable_id ?? ''}}"
+                type="'image_cover'"
+                image_file_name="{{ $imageCover->path_jpg ?? '' }}"
+                title="Portada"
+                title_2="Imagen de portada"
+              />
+          </div>
+          <div>
+              {{-- imagenes de la propiedad --}}
+              <div>
+                <x-pages.forms.label-form for="image_additional" value="Imagenes adicionales" />
+                <x-pages.forms.input-file-form multiple id="image_additional" description="JPG, JPEG, PNG o GIF (Max. 5 mb)" wire:model.live="image_additional" accept="image/*"
+                    />
+                <x-pages.forms.input-error for="image_additional" />
+            </div>
+  
+            @if ($imageAdditional)
+                
+            <div class="grid grid-cols-5 gap-1">
+                @foreach ($imageAdditional as $item)
+                <div class="flex flex-col justify-center items-center gap-1">
+                    <x-pages.libraries.lightbox.img-lightbox 
+                        class="mx-auto rounded-xl"
+                        class_w_h="h-16 w-16"
+                        name="{{ $item->path_jpg }}"   
+                    />
+                    <x-pages.buttons.primary-btn 
+                    title="Borrar" 
+                    wire:click="{{ 'deleteImageAdditional(' . $item->id . ', ' . $item->type . ')' }}" 
+                    >
+                    
+                    @slot('icon')
+                        {{-- <x-sistem.icons.for-icons-app icon="trash" class_w_h="h-4 w-4"/> --}}
+                    @endslot
+          
+                  </x-pages.buttons.primary-btn>
+                </div>
+                @endforeach
+            </div>
+            @endif
+          </div>
+  
+  
+          <x-pages.spinners.loading-spinner wire:loading.delay />
+  
+          
+      </div>
+  
+    </x-slot>
+  
+    <x-slot name="actions">
+  
+    </x-slot>
+  
+  </x-pages.forms.jetstream.form-section>
+</div>
+
+<x-pages.forms.validation-errors class="mb-4" />
 
 <div class="flex justify-end items-center gap-2 mt-4">
   <x-pages.buttons.normal-link 
